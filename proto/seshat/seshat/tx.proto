@@ -1,0 +1,7 @@
+syntax = "proto3";
+package seshat.seshat;
+
+option go_package = "seshat/x/seshat/types";
+
+// Msg defines the Msg service.
+service Msg {}

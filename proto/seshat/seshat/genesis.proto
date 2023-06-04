@@ -1,0 +1,12 @@
+syntax = "proto3";
+package seshat.seshat;
+
+import "gogoproto/gogo.proto";
+import "seshat/seshat/params.proto";
+
+option go_package = "seshat/x/seshat/types";
+
+// GenesisState defines the seshat module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}
