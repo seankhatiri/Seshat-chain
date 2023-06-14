@@ -1,13 +1,15 @@
 package cli
 
 import (
-	"context"
+	"strconv"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/spf13/cobra"
 	"seshat/x/seshat/types"
 )
+
+var _ = strconv.Itoa(0)
 
 func CmdSayHello() *cobra.Command {
 	cmd := &cobra.Command{
@@ -21,11 +23,10 @@ func CmdSayHello() *cobra.Command {
 				return err
 			}
 			queryClient := types.NewQueryClient(clientCtx)
-			
-			res, err := queryClient.Params(context.Background(), &types.QueryParamsRequest{})
-			if err != nil {
-				return err
+			params := &types.QuerySayHelloRequest{
+				Name: reqName,
 			}
+			res, err := queryClient.SayHello(cmd.Context(), params)
 
 			return clientCtx.PrintProto(res)
 		},

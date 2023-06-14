@@ -14,7 +14,7 @@ import (
 //just keeper module can call this function
 //to use the types here, need to transpile the proto to go
 //ignite generate proto-go
-func (k Keeper) SayHello(goCtx context.Context, req *types.QuerySayHelloRequest) (*types.QuerySayHelloRequest, error) {
+func (k Keeper) SayHello(goCtx context.Context, req *types.QuerySayHelloRequest) (*types.QuerySayHelloResponse, error) {
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid argument")
 	}
@@ -22,5 +22,5 @@ func (k Keeper) SayHello(goCtx context.Context, req *types.QuerySayHelloRequest)
 	ctx := sdk.UnwrapSDKContext(goCtx)
 	//process the query
 	_ = ctx
-	return &types.QuerySayHelloResponse{Name: fmt.Sprintf("hello %s", req.Name)}
+	return &types.QuerySayHelloResponse{Name: fmt.Sprintf("hello %s", req.Name)}, nil
 }
